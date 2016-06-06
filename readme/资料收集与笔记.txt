@@ -1,0 +1,46 @@
+
+http://www.mybatis.org/mybatis-3/zh/getting-started.html
+
+除了工作，开发MyAsker软件以外，还需要增长课外知识而且兼顾现实生活中的亏空问题，所以设立本记录，本记录只记录课外知识学习时间。
+抽空将异常部分整理出来。以后的教程分为：eclipse部分，异常部分，基本类型部分，JDBC与mybatis部分，线程部分，泛型部分
+待了解：
+UUID类
+TimeUnit类
+计划1：每天抽出15分钟学习mybatis内容，在15分钟时间段里面要有一个小的目标。
+5月4日 周三 1天
+19点35到19点50 
+了解重点博客：http://blog.csdn.net/isea533/article/category/2092001
+了解网站：mybatis.tk
+了解官方文档：http://www.mybatis.org/mybatis-3/zh/getting-started.html
+5月6日 周五 2天
+10点55到11点10分
+了解：http://www.mybatis.org/mybatis-3/zh/configuration.html#typeHandlers
+了解：http://blog.csdn.net/isea533/article/details/43986671
+5月8日 周日 3天
+7点10分到7点25分
+了解：
+http://blog.csdn.net/isea533/article/details/50061705
+http://blog.csdn.net/isea533/article/details/46442067
+5月17日 周二 4天
+[10:35-10:50]
+了解：mybatis-3-mapper.dtd
+5月18日 周三 5天
+[10:45-11:00]
+了解DTD文件：
+http://www.cnblogs.com/mengdd/archive/2013/05/27/3100884.html
+http://www.cnblogs.com/mengdd/archive/2013/05/28/3102893.html
+http://www.cnblogs.com/mengdd/archive/2013/05/30/3107361.html
+5月21日 周六 6天
+[18:45-19:00]
+JDBC视频教程
+5月23日 周一 7天
+[17:30-17:45]
+http://www.quartz-scheduler.org
+5月25日 周三 8天
+关于注入的使用：
+http://blog.csdn.net/lf_software_studio/article/details/8256510
+mybatis数据统计插件：
+	<plugins>
+        <plugin interceptor="com.netease.module.orm.ibatis.PaginationInterceptor"></plugin>
+        <plugin interceptor="com.netease.insurance.ibatis.SqlStatInterceptor"></plugin>
+	</plugins>
