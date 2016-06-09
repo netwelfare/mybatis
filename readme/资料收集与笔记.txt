@@ -44,3 +44,5 @@ mybatis数据统计插件：
         <plugin interceptor="com.netease.module.orm.ibatis.PaginationInterceptor"></plugin>
         <plugin interceptor="com.netease.insurance.ibatis.SqlStatInterceptor"></plugin>
 	</plugins>
+6月9日 周四 9天
+http://blog.csdn.net/isea533/article/details/44002219
