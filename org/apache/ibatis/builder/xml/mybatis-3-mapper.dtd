@@ -11,6 +11,9 @@ namespace CDATA #IMPLIED
 namespace CDATA #REQUIRED
 >
 
+<!--关于缓存的内容，可以参照这里：http://www.cnblogs.com/yjmyzz/p/use-cache-in-mybatis.html-->
+<!--关于缓存的内容，http://www.tuicool.com/articles/jqqMbaj-->
+<!--关于缓存的内容，http://www.yihaomen.com/article/java/428.htm-->
 <!ELEMENT cache (property*)>
 <!ATTLIST cache
 type CDATA #IMPLIED

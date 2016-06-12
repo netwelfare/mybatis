@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<!-- configuration是根目录-->
 <!ELEMENT configuration (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, plugins?, environments?, mappers?)>
 
 <!ELEMENT properties (property*)>
-<!ATTLIST properties
+<!ATTLIST properties <!-- 属性列-->
 resource CDATA #IMPLIED
 url CDATA #IMPLIED
 >
