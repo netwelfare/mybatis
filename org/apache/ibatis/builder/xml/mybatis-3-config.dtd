@@ -2,9 +2,9 @@
 
 <!-- configuration是根目录-->
 <!ELEMENT configuration (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, plugins?, environments?, mappers?)>
-
+<!-- 属性列-->
 <!ELEMENT properties (property*)>
-<!ATTLIST properties <!-- 属性列-->
+<!ATTLIST properties 
 resource CDATA #IMPLIED
 url CDATA #IMPLIED
 >

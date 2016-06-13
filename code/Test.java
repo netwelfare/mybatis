@@ -19,6 +19,7 @@ public class Test
 	 */
 	public static void main(String[] args) throws IOException
 	{
+		
 		String resource = "conf/configuration.xml";
 		Reader reader = Resources.getResourceAsReader(resource);
 		SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);

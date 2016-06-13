@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<!--dtd文件格式：http://www.cnblogs.com/mengdd/archive/2013/05/30/3107361.html-->
 <!ELEMENT mapper (cache-ref | cache | resultMap* | parameterMap* | sql* | insert* | update* | delete* | select* )+>
 <!ATTLIST mapper
 xmlns:fo CDATA #IMPLIED
