@@ -19,11 +19,17 @@ public class Test
 	 */
 	public static void main(String[] args) throws IOException
 	{
+		/**
+		 * 关于日志配置文件的：
+		 * http://javapub.iteye.com/blog/866664
+		 */
 		
-		String resource = "conf/configuration.xml";
+		
+			
+		String resource = "conf/configuration.xml";//可以使用/当做根目录
 		Reader reader = Resources.getResourceAsReader(resource);
-		SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
-		SqlSession session = ssf.openSession();
+		SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);//解析文件比较难的。
+		SqlSession session = ssf.openSession();//通过DateSource实现Connection的，
 		try
 		{
 			User user1 = (User) session.selectOne("selectUserById", "1111");

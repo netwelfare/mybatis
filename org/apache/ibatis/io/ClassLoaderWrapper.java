@@ -204,7 +204,7 @@ public class ClassLoaderWrapper
 	}
 
 	ClassLoader[] getClassLoaders(ClassLoader classLoader)
-	{
+	{//加载资源的时候classLoader为null，加载器的顺序是：用户自定义的，默认的，当前线程的，类加载器，系统默认的加载器，当前类的加载器和线程加载器不是一回事的
 
 		return new ClassLoader[]
 		{ classLoader, defaultClassLoader, Thread.currentThread().getContextClassLoader(), getClass().getClassLoader(),

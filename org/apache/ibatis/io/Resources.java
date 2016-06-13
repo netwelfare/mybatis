@@ -144,7 +144,7 @@ public class Resources
 	 * @return The resource
 	 * @throws java.io.IOException If the resource cannot be found or read
 	 */
-	//reader其实就是InputStreamReader
+	//reader其实就是InputStreamReader，加载资源
 	public static Reader getResourceAsReader(String resource) throws IOException
 	{
 		Reader reader;
