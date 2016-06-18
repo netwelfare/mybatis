@@ -9,6 +9,12 @@ import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 
+
+/**
+ * 需要掌握的地方：InvocationHandler的用法
+ * @author wangxiaofei
+ *
+ */
 public class MapperProxy implements InvocationHandler, Serializable {
 
   private static final long serialVersionUID = -6424540398559729838L;

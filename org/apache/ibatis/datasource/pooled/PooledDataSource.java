@@ -297,7 +297,7 @@ public class PooledDataSource implements DataSource
 	 * Closes all active and idle connections in the pool
 	 */
 	public void forceCloseAll()
-	{
+	{//控制了锁的粒度，
 		synchronized (state)
 		{
 			expectedConnectionTypeCode = assembleConnectionTypeCode(dataSource.getUrl(), dataSource.getUsername(),

@@ -1,48 +1,51 @@
-
+ï»¿
 http://www.mybatis.org/mybatis-3/zh/getting-started.html
 
-³ıÁË¹¤×÷£¬¿ª·¢MyAskerÈí¼şÒÔÍâ£¬»¹ĞèÒªÔö³¤¿ÎÍâÖªÊ¶¶øÇÒ¼æ¹ËÏÖÊµÉú»îÖĞµÄ¿÷¿ÕÎÊÌâ£¬ËùÒÔÉèÁ¢±¾¼ÇÂ¼£¬±¾¼ÇÂ¼Ö»¼ÇÂ¼¿ÎÍâÖªÊ¶Ñ§Ï°Ê±¼ä¡£
-³é¿Õ½«Òì³£²¿·ÖÕûÀí³öÀ´¡£ÒÔºóµÄ½Ì³Ì·ÖÎª£ºeclipse²¿·Ö£¬Òì³£²¿·Ö£¬»ù±¾ÀàĞÍ²¿·Ö£¬JDBCÓëmybatis²¿·Ö£¬Ïß³Ì²¿·Ö£¬·ºĞÍ²¿·Ö
-´ıÁË½â£º
-UUIDÀà
-TimeUnitÀà
-¼Æ»®1£ºÃ¿Ìì³é³ö15·ÖÖÓÑ§Ï°mybatisÄÚÈİ£¬ÔÚ15·ÖÖÓÊ±¼ä¶ÎÀïÃæÒªÓĞÒ»¸öĞ¡µÄÄ¿±ê¡£
-5ÔÂ4ÈÕ ÖÜÈı 1Ìì
-19µã35µ½19µã50 
-ÁË½âÖØµã²©¿Í£ºhttp://blog.csdn.net/isea533/article/category/2092001
-ÁË½âÍøÕ¾£ºmybatis.tk
-ÁË½â¹Ù·½ÎÄµµ£ºhttp://www.mybatis.org/mybatis-3/zh/getting-started.html
-5ÔÂ6ÈÕ ÖÜÎå 2Ìì
-10µã55µ½11µã10·Ö
-ÁË½â£ºhttp://www.mybatis.org/mybatis-3/zh/configuration.html#typeHandlers
-ÁË½â£ºhttp://blog.csdn.net/isea533/article/details/43986671
-5ÔÂ8ÈÕ ÖÜÈÕ 3Ìì
-7µã10·Öµ½7µã25·Ö
-ÁË½â£º
+é™¤äº†å·¥ä½œï¼Œå¼€å‘MyAskerè½¯ä»¶ä»¥å¤–ï¼Œè¿˜éœ€è¦å¢é•¿è¯¾å¤–çŸ¥è¯†è€Œä¸”å…¼é¡¾ç°å®ç”Ÿæ´»ä¸­çš„äºç©ºé—®é¢˜ï¼Œæ‰€ä»¥è®¾ç«‹æœ¬è®°å½•ï¼Œæœ¬è®°å½•åªè®°å½•è¯¾å¤–çŸ¥è¯†å­¦ä¹ æ—¶é—´ã€‚
+æŠ½ç©ºå°†å¼‚å¸¸éƒ¨åˆ†æ•´ç†å‡ºæ¥ã€‚ä»¥åçš„æ•™ç¨‹åˆ†ä¸ºï¼šeclipseéƒ¨åˆ†ï¼Œå¼‚å¸¸éƒ¨åˆ†ï¼ŒåŸºæœ¬ç±»å‹éƒ¨åˆ†ï¼ŒJDBCä¸mybatiséƒ¨åˆ†ï¼Œçº¿ç¨‹éƒ¨åˆ†ï¼Œæ³›å‹éƒ¨åˆ†
+å¾…äº†è§£ï¼š
+UUIDç±»
+TimeUnitç±»
+è®¡åˆ’1ï¼šæ¯å¤©æŠ½å‡º15åˆ†é’Ÿå­¦ä¹ mybatiså†…å®¹ï¼Œåœ¨15åˆ†é’Ÿæ—¶é—´æ®µé‡Œé¢è¦æœ‰ä¸€ä¸ªå°çš„ç›®æ ‡ã€‚
+5æœˆ4æ—¥ å‘¨ä¸‰ 1å¤©
+19ç‚¹35åˆ°19ç‚¹50 
+äº†è§£é‡ç‚¹åšå®¢ï¼šhttp://blog.csdn.net/isea533/article/category/2092001
+äº†è§£ç½‘ç«™ï¼šmybatis.tk
+äº†è§£å®˜æ–¹æ–‡æ¡£ï¼šhttp://www.mybatis.org/mybatis-3/zh/getting-started.html
+5æœˆ6æ—¥ å‘¨äº” 2å¤©
+10ç‚¹55åˆ°11ç‚¹10åˆ†
+äº†è§£ï¼šhttp://www.mybatis.org/mybatis-3/zh/configuration.html#typeHandlers
+äº†è§£ï¼šhttp://blog.csdn.net/isea533/article/details/43986671
+5æœˆ8æ—¥ å‘¨æ—¥ 3å¤©
+7ç‚¹10åˆ†åˆ°7ç‚¹25åˆ†
+äº†è§£ï¼š
 http://blog.csdn.net/isea533/article/details/50061705
 http://blog.csdn.net/isea533/article/details/46442067
-5ÔÂ17ÈÕ ÖÜ¶ş 4Ìì
+5æœˆ17æ—¥ å‘¨äºŒ 4å¤©
 [10:35-10:50]
-ÁË½â£ºmybatis-3-mapper.dtd
-5ÔÂ18ÈÕ ÖÜÈı 5Ìì
+äº†è§£ï¼šmybatis-3-mapper.dtd
+5æœˆ18æ—¥ å‘¨ä¸‰ 5å¤©
 [10:45-11:00]
-ÁË½âDTDÎÄ¼ş£º
+äº†è§£DTDæ–‡ä»¶ï¼š
 http://www.cnblogs.com/mengdd/archive/2013/05/27/3100884.html
 http://www.cnblogs.com/mengdd/archive/2013/05/28/3102893.html
 http://www.cnblogs.com/mengdd/archive/2013/05/30/3107361.html
-5ÔÂ21ÈÕ ÖÜÁù 6Ìì
+5æœˆ21æ—¥ å‘¨å…­ 6å¤©
 [18:45-19:00]
-JDBCÊÓÆµ½Ì³Ì
-5ÔÂ23ÈÕ ÖÜÒ» 7Ìì
+JDBCè§†é¢‘æ•™ç¨‹
+5æœˆ23æ—¥ å‘¨ä¸€ 7å¤©
 [17:30-17:45]
 http://www.quartz-scheduler.org
-5ÔÂ25ÈÕ ÖÜÈı 8Ìì
-¹ØÓÚ×¢ÈëµÄÊ¹ÓÃ£º
+5æœˆ25æ—¥ å‘¨ä¸‰ 8å¤©
+å…³äºæ³¨å…¥çš„ä½¿ç”¨ï¼š
 http://blog.csdn.net/lf_software_studio/article/details/8256510
-mybatisÊı¾İÍ³¼Æ²å¼ş£º
+mybatisæ•°æ®ç»Ÿè®¡æ’ä»¶ï¼š
 	<plugins>
         <plugin interceptor="com.netease.module.orm.ibatis.PaginationInterceptor"></plugin>
         <plugin interceptor="com.netease.insurance.ibatis.SqlStatInterceptor"></plugin>
 	</plugins>
-6ÔÂ9ÈÕ ÖÜËÄ 9Ìì
-http://blog.csdn.net/isea533/article/details/44002219
+6æœˆ9æ—¥ å‘¨å›› 9å¤©
+http://blog.csdn.net/isea533/article/details/44002219 
+
+JAVAçŸ¥è¯†å­¦ä¹ çš„æ–¹å‘ï¼š
+å¾ˆå¤šæ—¶å€™æˆ‘ä»¬æ“ä½œæ˜¯ä¸šåŠ¡çŸ¥è¯†ï¼Œè€Œä¸æ˜¯JAVAçŸ¥è¯†ï¼Œå¦‚æœæƒ³æ“ä½œJAVAçŸ¥è¯†ï¼Œé‚£å¿…é¡»å¯¹åå°„ï¼Œæ³¨è§£ï¼Œæ³›å‹ï¼Œä»£ç†ï¼ŒClasså¯¹è±¡æœ‰éå¸¸æ·±çš„è®¤è¯†æ‰è¡Œçš„ã€‚

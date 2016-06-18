@@ -64,6 +64,7 @@ public class ConnectionLogger extends BaseJdbcLogger implements InvocationHandle
    *
    * @param conn - the original connection
    * @return - the connection with logging
+   * 代理的方法使用的目的是为了添加日志啊。
    */
   public static Connection newInstance(Connection conn) {
     InvocationHandler handler = new ConnectionLogger(conn);
