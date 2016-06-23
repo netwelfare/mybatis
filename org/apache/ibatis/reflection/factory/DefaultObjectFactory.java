@@ -5,7 +5,7 @@ import org.apache.ibatis.reflection.ReflectionException;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.util.*;
-
+//这种ObjectFactory是十分重要的思想，
 public class DefaultObjectFactory implements ObjectFactory, Serializable {
 
   private static final long serialVersionUID = -8855120656740914948L;

@@ -9,7 +9,7 @@ import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
-
+//见资料：http://www.open-open.com/lib/view/open1455718314042.html
 public class SqlSessionFactoryBuilder
 {
 

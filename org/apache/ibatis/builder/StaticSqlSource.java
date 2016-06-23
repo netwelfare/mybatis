@@ -7,6 +7,7 @@ import org.apache.ibatis.session.Configuration;
 
 import java.util.List;
 
+
 public class StaticSqlSource implements SqlSource {
 
   private String sql;

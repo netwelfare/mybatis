@@ -2,7 +2,7 @@ package org.apache.ibatis.reflection.factory;
 
 import java.util.List;
 import java.util.Properties;
-
+//不错的工厂方法
 public interface ObjectFactory {
 
   Object create(Class type);

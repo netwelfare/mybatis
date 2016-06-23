@@ -29,7 +29,7 @@ class SerialStateHolder implements Serializable {
   
   protected Object readResolve() throws ObjectStreamException {
     Set<String> arrayProps = new HashSet<String>(Arrays.asList(this.unloadedProperties));
-    List<Class> arrayTypes = Arrays.asList(this.constructorArgTypes);
+    List<Class> arrayTypes = Arrays.asList(this.constructorArgTypes);//List的，很重要的方法啊。
     List<Object> arrayValues = Arrays.asList(this.constructorArgs);
     return ResultObjectProxy.createDeserializationProxy(userBean, arrayProps, objectFactory, arrayTypes, arrayValues);
   }

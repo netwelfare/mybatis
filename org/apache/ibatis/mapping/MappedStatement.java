@@ -9,7 +9,12 @@ import org.apache.ibatis.session.Configuration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+//资料见：http://www.open-open.com/lib/view/open1363572227609.html，写的很好。
+/**
+ * 
+ * @author wangxiaofei
+ *
+ */
 public class MappedStatement {
 
   private String resource;

@@ -11,7 +11,6 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
-
 public class Jdbc3KeyGenerator implements KeyGenerator {
 
   private String keyColumnName;
@@ -26,12 +25,12 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
   public void processAfter(Executor executor, MappedStatement ms, Statement stmt, Object parameter) {
     try {
       final Configuration configuration = ms.getConfiguration();
-      final TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+      final TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();//不明白
       if (parameter != null) {
         String keyProperty = ms.getKeyProperty();
-        final MetaObject metaParam = configuration.newMetaObject(parameter);
+        final MetaObject metaParam = configuration.newMetaObject(parameter);//将参数进行封装，
         if (keyProperty != null && metaParam.hasSetter(keyProperty)) {
-          Class<?> keyPropertyType = metaParam.getSetterType(keyProperty);
+          Class<?> keyPropertyType = metaParam.getSetterType(keyProperty);//泛型的方法非常好。class相当于一个普通的类，而这个类是所有类的类
           TypeHandler th = typeHandlerRegistry.getTypeHandler(keyPropertyType);
           if (th != null) {
             ResultSet rs = stmt.getGeneratedKeys();

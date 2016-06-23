@@ -21,7 +21,7 @@ public class MetaObject {
   private ObjectWrapper objectWrapper;
   private ObjectFactory objectFactory;
   private ObjectWrapperFactory objectWrapperFactory;
-
+  //所有的类都要是上升到MetaObject类
   private MetaObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory) {
     this.originalObject = object;
     this.objectFactory = objectFactory;

@@ -18,7 +18,7 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 
 import java.sql.*;
 import java.util.*;
-
+//研究到此类
 public class FastResultSetHandler implements ResultSetHandler {
 
   protected final Executor executor;
