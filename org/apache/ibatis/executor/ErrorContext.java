@@ -1,6 +1,6 @@
 package org.apache.ibatis.executor;
 
-public class ErrorContext {
+public class ErrorContext {//为什么要这么设计呢？
 
   private static final String LINE_SEPARATOR = System.getProperty("line.separator","\n");
   private static final ThreadLocal<ErrorContext> LOCAL = new ThreadLocal<ErrorContext>();
