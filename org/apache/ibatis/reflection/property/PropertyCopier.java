@@ -3,7 +3,7 @@ package org.apache.ibatis.reflection.property;
 import java.lang.reflect.Field;
 
 public class PropertyCopier {
-
+  //简单的bean copier，不错的代码
   public static void copyBeanProperties(Class type, Object sourceBean, Object destinationBean) {
     Class parent = type;
     while (parent != null) {

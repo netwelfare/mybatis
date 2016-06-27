@@ -23,7 +23,7 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-//代码读到这里
+//类完全看不懂
 public class XPathParser
 {
 
@@ -36,8 +36,8 @@ public class XPathParser
 	public XPathParser(String xml)
 	{
 
-		commonConstructor(false, null, null);
-		this.document = createDocument(new InputSource(new StringReader(xml)));
+		commonConstructor(false, null, null);//没有看懂
+		this.document = createDocument(new InputSource(new StringReader(xml)));//StringReader不懂
 	}
 
 	public XPathParser(Reader reader)

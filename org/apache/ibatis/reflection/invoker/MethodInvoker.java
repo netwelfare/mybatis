@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 public class MethodInvoker implements Invoker {
 
+  //这种class的方式是不对的。
   private Class type;
   private Method method;
 

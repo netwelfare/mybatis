@@ -7,7 +7,7 @@ import org.apache.ibatis.io.Resources;
 public class LogFactory {
 
   private static Constructor<? extends Log> logConstructor;
-
+  //使用静态方法实现类的加载
   static {
     tryImplementation(new Runnable() {
       public void run() {

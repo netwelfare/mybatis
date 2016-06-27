@@ -13,10 +13,15 @@ import java.util.*;
  * This class represents a cached set of class definition information that
  * allows for easy mapping between property names and getter/setter methods.
  */
+//代码读到此类
 public class Reflector {
-
+   
   private static boolean classCacheEnabled = true;
   private static final String[] EMPTY_STRING_ARRAY = new String[0];
+  //为什么使用这种方法呢？
+  // HashMap与ConcurrentHashMap的区别 :http://blog.csdn.net/xuefeng0707/article/details/40834595
+  
+  //BasicMarkerFactory，Log4jLoggerFactory类使用了ConcurrentHashMap，本类也可以使用这个类的方法：putIfAbsent方法
   private static final Map<Class, Reflector> REFLECTOR_MAP = Collections.synchronizedMap(new HashMap<Class, Reflector>());
 
   private Class type;
