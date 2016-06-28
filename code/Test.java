@@ -10,28 +10,21 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import entity.User;
 
-public class Test
-{
+public class Test {
 
 	/**
 	 * @param args
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException
-	{
+	public static void main(String[] args) throws IOException {
 		/**
-		 * 关于日志配置文件的：
-		 * http://javapub.iteye.com/blog/866664
+		 * 关于日志配置文件的： http://javapub.iteye.com/blog/866664
 		 */
-		
-		
-			
-		String resource = "conf/configuration.xml";//可以使用/当做根目录
+		String resource = "conf/configuration.xml";// 可以使用/当做根目录
 		Reader reader = Resources.getResourceAsReader(resource);
-		SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);//解析文件比较难的。
-		SqlSession session = ssf.openSession();//通过DateSource实现Connection的，
-		try
-		{
+		SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);// 解析文件比较难的。
+		SqlSession session = ssf.openSession();// 通过DateSource实现Connection的，
+		try {
 			User user1 = (User) session.selectOne("selectUserById", "1111");
 
 			System.out.println(user1.getName());
@@ -52,11 +45,9 @@ public class Test
 			 * System.out.println(result);
 			 */
 
-		} catch (RuntimeException e)
-		{
+		} catch (RuntimeException e) {
 			e.printStackTrace();
-		} finally
-		{
+		} finally {
 			session.close();
 		}
 
