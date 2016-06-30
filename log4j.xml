@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <!-- 控制台输出 -->
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%p] [%c] [%X{userName}] - %m%n"/>
+		</layout>
+	</appender>
+	
+    <!-- 系统启动日志输出文件 -->
+    <appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/system.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%p] [%c] [%X{userName}] - %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	
+	<!-- 异常日志 -->
+	<appender name="errorAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/error.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}][%X{userName}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender>
+	
+	<!-- debug日志输出文件 -->
+	<appender name="debugAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="logs/debug.log"/>
+		<param name="MaxFileSize" value="50MB"/>
+		<param name="MaxBackupIndex" value="0"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}][%X{userName}] - %m%n"/>
+	    </layout>
+	    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+          <param name="LevelMin" value="DEBUG" />
+          <param name="LevelMax" value="FATAL" />
+        </filter>
+	</appender>
+	
+	<!--登录模块 appender -->
+	<appender name="loginAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/login.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	<!--登录模块 appender -->
+	<appender name="epayAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/epay.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	<!-- 订单报警 appender -->
+	<appender name="orderAlarmAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/orderAlarm.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	<!-- 需要报警的订单外的错误 appender -->
+	<appender name="alarmAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/alarm.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	<!-- 搜索记录查询 -->
+	<appender name="searchAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="logs/search.log"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	<!-- 对账 -->
+	<appender name="reconciliateAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="logs/reconciliate.log"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	
+	<appender name="updateOrderAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/updateOrder.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	
+	<appender name="closeOrderAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/closeOrder.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	
+	<!--business mall appender -->
+	<appender name="mallAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_mall.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business movie appender -->
+	<appender name="movieAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_movie.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+
+
+	
+	<!--business pacific appender -->
+	<appender name="pacificAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_pacific.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!--business allianz appender -->
+	<appender name="allianzAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_allianz.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!--business taikang appender -->
+	<appender name="taikangAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_taikang.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!--business pingan appender -->
+	<appender name="pinganAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_pingan.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!--business pingan nocar appender -->
+	<appender name="pinganNoCarAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_pingan_nocar.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business picc appender -->
+	<appender name="piccAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_picc.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business cpic appender -->
+	<appender name="cpicAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_cpic.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business ccic appender -->
+	<appender name="ccicAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_ccic.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business sunshine appender -->
+	<appender name="sunshineAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_sunshine.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!--business tplife appender -->
+	<appender name="tplifeAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_tplife.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<appender name="cpicNoCarAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_cpicnocar.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business guangda appender -->
+	<appender name="guangdaAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_guangda.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business xinhua appender -->
+	<appender name="xinhuaAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_xinhua.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business instony appender -->
+	<appender name="instonyAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_instony.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business pkufi appender -->
+	<appender name="pkufiAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_pkufi.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business zhongyiAppender appender -->
+	<appender name="zhongyiAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_zhongyi.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<appender name="foreseaAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_foresea.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<appender name="bocInsAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_bocins.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<appender name="aeonAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_aeon.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business guohua appender -->
+	<appender name="guohuaAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_guohua.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--business unionlife appender -->
+	<appender name="unionlifeAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/corp_unionlife.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--violation appender -->
+	<appender name="violationAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/violationQuery.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<!--appQuote appender -->
+	<appender name="appQuoteAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/appQuoteInfo.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--weixin appender -->
+	<appender name="weixinAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/weixinInfo.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--notify appender -->
+	<appender name="notifyAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/notifyInfo.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--valueQuery appender -->
+	<appender name="valueQueryAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/valueQuery.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<appender name="carinsuadminAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/carinsuAdmin.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+    <!-- 合作方通信 appender -->
+	<appender name="inOutAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/inout.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	
+	<!--mail calculator appender -->
+	<appender name="mailCalculatorAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/mail_calculator.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+	<!--no zx user info appender -->
+	<appender name="noZxUserInfoAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/nozxuserinfo.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	
+    <appender name="sqlStatInterceptorAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="logs/sqlstat.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM"/>
+        <layout  class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO" />
+        </filter>
+    </appender>
+    
+	<!--记录用户退订的原因 -->
+	<appender name="unsubscribeReasonAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/unsubscribeReason.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!--fetch purchase record appender -->
+	<appender name="fetchPurchaseRecordAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/fetchPurchaseRecord.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!--train yw insu appender -->
+	<appender name="trainInsuRecordAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/trainInsuRecord.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<appender name="carInfoAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/carInfo.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM"/>
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d][%X{userIP}] - %m%n"/>
+	    </layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<!-- sql统计拦截器 -->
+	<logger name="sqlStatLogger" additivity="false" >
+	    <level value="INFO"/>
+        <appender-ref ref="sqlStatInterceptorAppender"/>
+	</logger>
+	<!-- errorLogger -->
+	<logger name="errorLogger" additivity="false">  
+		<level value="ERROR"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="errorAppender" />  
+	</logger>
+	
+	<!-- debugLogger -->
+	<logger name="debugLogger" additivity="false">  
+	    <!--开发环境、测试环境下，可以将value设为DEBUG -->
+	    <level value="DEBUG"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="debugAppender"/>  
+	</logger>
+	<!-- debugLogger -->
+	<logger name="devDebug" additivity="false">  
+	    <!--开发环境、测试环境下，可以将value设为DEBUG -->
+	    <level value="DEBUG"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="debugAppender"/>  
+	</logger>
+	<!-- 订单报警logger -->
+	<logger name="orderAlarmLogger" additivity="false">  
+	    <!--开发环境、测试环境下，可以将value设为DEBUG -->
+	    <level value="INFO"/>
+	    <appender-ref ref="stdout"/>
+		<appender-ref ref="orderAlarmAppender"/>  
+	</logger>
+	<!-- 需要报警的订单外的错误logger -->
+	<logger name="alarmLogger" additivity="false">  
+	    <!--开发环境、测试环境下，可以将value设为DEBUG -->
+	    <level value="INFO"/>
+	    <appender-ref ref="stdout"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="alarmAppender"/>  
+	</logger>
+	<!-- 搜索的记录 -->
+	<logger name="searchLogger" additivity="false">  
+	    <!--开发环境、测试环境下，可以将value设为DEBUG -->
+	    <level value="INFO"/>
+		<appender-ref ref="searchAppender"/>  
+	</logger>
+	
+	<!-- 更新订单 -->
+	<logger name="updateOrder" additivity="false">  
+	    <!--开发环境、测试环境下，可以将value设为DEBUG -->
+	    <level value="INFO"/>
+		<appender-ref ref="updateOrderAppender"/>  
+	</logger>
+	
+	<!-- 关闭订单 -->
+	<logger name="closeOrder" additivity="false">  
+	    <!--开发环境、测试环境下，可以将value设为DEBUG -->
+	    <level value="INFO"/>
+		<appender-ref ref="closeOrderAppender"/>  
+	</logger>
+	
+	<!-- pacificLogger -->
+	<logger name="pacificLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="pacificAppender"/>  
+	</logger>
+	<!-- allianzLogger -->
+	<logger name="allianzLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="allianzAppender"/>  
+	</logger>
+	<!-- taikangLogger -->
+	<logger name="taikangLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="taikangAppender"/>  
+	</logger>
+	<!-- pinganLogger -->
+	<logger name="com.netease.carinsu.cooperation.pingan.PinganHttpService" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="pinganAppender"/>
+	</logger>
+	<!-- pinganCarLogger -->
+	<logger name="pinganCarLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="pinganAppender"/>
+	</logger>
+	<!-- pinganNoCarLogger -->
+	<logger name="pinganNoCarLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="pinganNoCarAppender"/>
+	</logger>
+	<!-- piccLogger -->
+	<logger name="piccCarLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="piccAppender"/>
+	</logger>
+	<!-- cpicLogger -->
+	<logger name="cpicCarLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="cpicAppender"/>
+	</logger>
+	<!-- ccicLogger -->
+	<logger name="ccicCarLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="ccicAppender"/>
+	</logger>
+	<!-- sunshineLogger -->
+	<logger name="sunshineCarLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="sunshineAppender"/>
+	</logger>
+	<!-- tplifeLogger -->
+	<logger name="tplifeLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="tplifeAppender"/>
+	</logger>
+	
+	<!-- cpciNoCarLogger -->
+	<logger name="cpicNoCarLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="cpicNoCarAppender"/>
+	</logger>
+	
+	<!-- guangdaLogger -->
+	<logger name="guangdaLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="guangdaAppender"/>
+	</logger>
+	<!-- xinhuaLogger -->
+	<logger name="xinhuaLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="xinhuaAppender"/>
+	</logger>
+	<!-- instonyLogger -->
+	<logger name="instonyLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="instonyAppender"/>
+	</logger>
+	
+	<!-- pkufiLogger -->
+	<logger name="pkufiLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="pkufiAppender"/>
+	</logger>
+	
+	<!-- zhongyiLogger -->
+	<logger name="zhongyiLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="zhongyiAppender"/>
+	</logger>
+	
+	<logger name="foreseaLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="foreseaAppender"/>
+	</logger>
+	
+	<logger name="bocInsLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="bocInsAppender"/>
+	</logger>
+	
+	<logger name="aeonLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="aeonAppender"/>
+	</logger>
+	
+	<!-- guangdaLogger -->
+	<logger name="guohuaLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="guohuaAppender"/>
+	</logger>
+	<!-- unionlifeLogger -->
+	<logger name="unionlifeLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="unionlifeAppender"/>
+	</logger>
+	<!-- insureToWybLogger -->
+	<logger name="insureToWybLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="reconciliateAppender"/>  
+	</logger>
+	
+	<!-- loginLogger -->
+    <logger name="loginLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="loginAppender" />  
+	</logger>
+	<!-- epayLogger -->
+    <logger name="epayLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="epayAppender" />  
+	</logger>
+	
+	<!-- mallLogger -->
+    <logger name="mallLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="mallAppender" />  
+	</logger>
+	
+	<!-- movieLogger -->
+    <logger name="movieLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="movieAppender" />  
+	</logger>
+	
+	<!-- violationLogger -->
+    <logger name="violationLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="violationAppender" />  
+	</logger>
+	
+	<!-- appQuoteLogger -->
+    <logger name="appQuoteLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="appQuoteAppender" />  
+	</logger>
+	
+	<!-- weixinLogger -->
+    <logger name="weixinLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="weixinAppender" />  
+	</logger>
+	
+	<!-- notifyLogger -->
+    <logger name="notifyLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="notifyAppender" />  
+	</logger>
+	
+	<!-- valueQueryLogger -->
+    <logger name="valueQueryLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="valueQueryAppender" />  
+	</logger>
+	
+	<logger name="com.netease.carinsuadmin" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="carinsuadminAppender"/>
+	</logger>
+	
+	<logger name="java.sql" additivity="true">
+   		 <level value="DEBUG" />
+		 <appender-ref ref="stdout"/>
+	     <appender-ref ref="debugAppender" />
+	</logger>
+	<logger name="com.ibatis" additivity="true">
+   		 <level value="DEBUG" />
+		 <appender-ref ref="stdout"/>
+	     <appender-ref ref="debugAppender" />
+	</logger>
+
+
+
+ 	<logger name="com.opensymphony.xwork2" additivity="true">
+	   <level value="ERROR" />
+	   <appender-ref ref="stdout"/>
+	   <appender-ref ref="fileAppender" />
+	</logger>
+ 	<logger name="org.apache" additivity="true">
+	   <level value="ERROR" />
+	   <appender-ref ref="stdout"/>
+	   <appender-ref ref="fileAppender" />
+	</logger>
+	<logger name="org.springframework" additivity="true" >
+	   <level value="ERROR" />
+	   <appender-ref ref="stdout"/>
+	   <appender-ref ref="errorAppender" />
+	</logger>
+	<logger name="org.logicalcobwebs.proxool" additivity="true">
+	   <level value="ERROR" />
+	   <appender-ref ref="stdout"/>
+	   <appender-ref ref="errorAppender" />
+	</logger>
+	<logger name="com.danga.MemCached" additivity="true">
+	   <level value="INFO" />
+	   <appender-ref ref="stdout"/>
+	   <appender-ref ref="fileAppender" />
+	</logger>
+	<logger name="inOutLogger" additivity="false">  
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="inOutAppender" />  
+	</logger>
+	<!-- mailCalculatorLogger -->
+	<logger name="mailCalculatorLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="mailCalculatorAppender"/>
+	</logger>
+	<!--no zx user info record -->
+	<logger name="noZxUserLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="noZxUserInfoAppender"/>
+	</logger>
+	<!--记录用户退订的原因 -->
+	<logger name="unsubscribeReasonLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="unsubscribeReasonAppender"/>
+	</logger>
+	<!--fetch purchase record appender-->
+	<logger name="fetchPurchaseRecordLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="fetchPurchaseRecordAppender"/>
+	</logger>
+		<!--train yw insu appender-->
+	<logger name="trainInsuRecordLogger" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="trainInsuRecordAppender"/>
+	</logger>
+	<logger name="kafka" additivity="false">
+		<level value="fatal"/>
+		<appender-ref ref="fileAppender"/>
+	</logger>
+	<logger name="carInfoLog" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="carInfoAppender"/>
+	</logger>
+	<root>
+	  <level value="DEBUG"/>
+	  <appender-ref ref="stdout"/>
+	  <appender-ref ref="fileAppender"/>
+	</root>
+</log4j:configuration>

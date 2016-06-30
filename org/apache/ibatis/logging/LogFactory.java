@@ -6,38 +6,6 @@ import org.apache.ibatis.io.Resources;
 
 public class LogFactory
 {
-
-<<<<<<< HEAD
-  private static Constructor<? extends Log> logConstructor;
-  //使用静态方法实现类的加载
-  static {
-    tryImplementation(new Runnable() {
-      public void run() {
-        useSlf4jLogging();
-      }
-    });
-    tryImplementation(new Runnable() {
-      public void run() {
-        useCommonsLogging();
-      }
-    });
-    tryImplementation(new Runnable() {
-      public void run() {
-        useLog4JLogging();
-      }
-    });
-    tryImplementation(new Runnable() {
-      public void run() {
-        useJdkLogging();
-      }
-    });
-    tryImplementation(new Runnable() {
-      public void run() {
-        useNoLogging();
-      }
-    });
-  }
-=======
 	private static Constructor<? extends Log> logConstructor;
 	// 程序启动加载的
 	static
@@ -90,7 +58,6 @@ public class LogFactory
 			throw new LogException("Error creating logger for class " + aClass + ".  Cause: " + t, t);
 		}
 	}
->>>>>>> 5ddb9c2c4a7807075bac0ff9f36f4ddc6cf8033a
 
 	// 并发控制的类
 	public static synchronized void useSlf4jLogging()
