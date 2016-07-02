@@ -21,4 +21,5 @@ public @interface Arg {
   public abstract JdbcType jdbcType() default JdbcType.UNDEFINED;
 
   public abstract Class<? extends TypeHandler> typeHandler() default TypeHandler.class;
+  //有时间一定要学习一下注解的知识
 }

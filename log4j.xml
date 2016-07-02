@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-
+    <!-- 首先要定义附加器，然后定义logger -->
     <!-- 控制台输出 -->
 	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
@@ -906,6 +906,12 @@
 		<appender-ref ref="stdout"/>
 		<appender-ref ref="fetchPurchaseRecordAppender"/>
 	</logger>
+	<!-- 测试命名空间 -->
+	<logger name="code.net.swiftlet" additivity="false">  
+	    <level value="INFO"/>
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="trainInsuRecordAppender"/>
+	</logger>
 		<!--train yw insu appender-->
 	<logger name="trainInsuRecordLogger" additivity="false">  
 	    <level value="INFO"/>
@@ -916,10 +922,12 @@
 		<level value="fatal"/>
 		<appender-ref ref="fileAppender"/>
 	</logger>
+	<!-- additivity 的用法：http://blog.csdn.net/hongweigg/article/details/14169477 -->
 	<logger name="carInfoLog" additivity="false">
 		<level value="INFO"/>
 		<appender-ref ref="carInfoAppender"/>
 	</logger>
+	 <!-- root logger 的定义别具风格 -->
 	<root>
 	  <level value="DEBUG"/>
 	  <appender-ref ref="stdout"/>
