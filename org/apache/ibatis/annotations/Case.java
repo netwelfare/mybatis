@@ -13,4 +13,5 @@ public @interface Case {
   public abstract Class<?> type();
 
   public abstract Result[] results() default {};
+
 }

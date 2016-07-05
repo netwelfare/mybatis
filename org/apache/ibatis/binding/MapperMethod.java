@@ -15,6 +15,7 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
+// 此类没有看懂啊。
 public class MapperMethod {
 
   private SqlSession sqlSession;
@@ -136,13 +137,13 @@ public class MapperMethod {
   }
 
   private void setupMethodSignature() {
-    if( method.getReturnType().equals(Void.TYPE)){
+    if (method.getReturnType().equals(Void.TYPE)) {
       returnsVoid = true;
     }
     if (List.class.isAssignableFrom(method.getReturnType())) {
       returnsList = true;
     }
-    if (Map.class.isAssignableFrom(method.getReturnType())) { 
+    if (Map.class.isAssignableFrom(method.getReturnType())) {
       final MapKey mapKeyAnnotation = method.getAnnotation(MapKey.class);
       if (mapKeyAnnotation != null) {
         mapKey = mapKeyAnnotation.value();
@@ -156,13 +157,15 @@ public class MapperMethod {
         if (rowBoundsIndex == null) {
           rowBoundsIndex = i;
         } else {
-          throw new BindingException(method.getName() + " cannot have multiple RowBounds parameters");
+          throw new BindingException(
+              method.getName() + " cannot have multiple RowBounds parameters");
         }
       } else if (ResultHandler.class.isAssignableFrom(argTypes[i])) {
         if (resultHandlerIndex == null) {
           resultHandlerIndex = i;
         } else {
-          throw new BindingException(method.getName() + " cannot have multiple ResultHandler parameters");
+          throw new BindingException(
+              method.getName() + " cannot have multiple ResultHandler parameters");
         }
       } else {
         String paramName = String.valueOf(paramPositions.size());

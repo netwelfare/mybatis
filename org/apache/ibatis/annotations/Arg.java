@@ -1,12 +1,12 @@
 package org.apache.ibatis.annotations;
 
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.TypeHandler;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.TypeHandler;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
@@ -21,5 +21,5 @@ public @interface Arg {
   public abstract JdbcType jdbcType() default JdbcType.UNDEFINED;
 
   public abstract Class<? extends TypeHandler> typeHandler() default TypeHandler.class;
-  //ÓĞÊ±¼äÒ»¶¨ÒªÑ§Ï°Ò»ÏÂ×¢½âµÄÖªÊ¶
+  // å¯ä»¥çœ‹çœ‹è¿™äº›å†…å®¹çš„
 }
