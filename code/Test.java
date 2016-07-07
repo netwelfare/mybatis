@@ -23,7 +23,9 @@ public class Test {
 		String resource = "conf/configuration.xml";// 可以使用/当做根目录
 		Reader reader = Resources.getResourceAsReader(resource);
 		SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);// 解析文件比较难的。
+		System.err.println(ssf.getClass().getName());// DefaultSqlSessionFactory
 		SqlSession session = ssf.openSession();// 通过DateSource实现Connection的，
+		System.err.println(session.getClass().getName());// DefaultSqlSession
 		try {
 			User user1 = (User) session.selectOne("selectUserById", "1111");
 
