@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+//拦截器
 public interface StatementHandler {
 
   Statement prepare(Connection connection)

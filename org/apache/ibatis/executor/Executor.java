@@ -9,7 +9,15 @@ import org.apache.ibatis.transaction.Transaction;
 
 import java.sql.SQLException;
 import java.util.List;
-
+//拦截器
+/**
+ * 总体概括为：
+    拦截执行器的方法
+    拦截参数的处理
+    拦截结果集的处理
+    拦截Sql语法构建的处理
+ *
+ */
 public interface Executor {
 
   ResultHandler NO_RESULT_HANDLER = null;

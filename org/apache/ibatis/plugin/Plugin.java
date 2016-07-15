@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.ibatis.reflection.ExceptionUtil;
-
+//拦截器
 public class Plugin implements InvocationHandler {
 
   private Object target;
@@ -43,7 +43,7 @@ public class Plugin implements InvocationHandler {
       }
       return method.invoke(target, args);
     } catch (Exception e) {
-      throw ExceptionUtil.unwrapThrowable(e);
+      throw ExceptionUtil.unwrapThrowable(e);//不错的写法，很灵活！
     }
   }
 

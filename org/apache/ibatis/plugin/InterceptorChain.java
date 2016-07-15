@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InterceptorChain {
-
+  //拦截器链定义
   private final List<Interceptor> interceptors = new ArrayList<Interceptor>();
 
   public Object pluginAll(Object target) {

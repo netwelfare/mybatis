@@ -128,7 +128,12 @@ public class XMLConfigBuilder extends BaseBuilder
 			}
 		}
 	}
-
+	/**
+	 *插件文件的解析：
+       <plugins>
+       <plugin interceptor="org.format.mybatis.cache.interceptor.ExamplePlugin"></plugin>
+       </plugins>
+	 */      
 	private void pluginElement(XNode parent) throws Exception
 	{
 		if (parent != null)

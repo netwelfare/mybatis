@@ -502,7 +502,7 @@ public class Configuration
 	{
 		return sqlFragments;
 	}
-
+    //加入拦截器链
 	public void addInterceptor(Interceptor interceptor)
 	{
 		interceptorChain.addInterceptor(interceptor);
