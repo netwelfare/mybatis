@@ -2,10 +2,14 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-<properties resource="conf/config.properties">
-<!--<property name="username" value="root"/>-->
-<!--<property name="password" value=""/>-->
-</properties> 
+	<properties resource="conf/config.properties">
+		<!--<property name="username" value="root"/>-->
+		<!--<property name="password" value=""/>-->
+	</properties> 
+	<plugins><!-- 注意顺序 -->
+    	<plugin interceptor="code.interceptor.ExamplePlugin"></plugin>
+    	<plugin interceptor="code.interceptor.ExamplePlugin2"></plugin>
+	</plugins>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -23,6 +27,7 @@
 			</dataSource>
 		</environment>
 	</environments>
+
 	<mappers>
 		<mapper resource="conf/user.xml" />
 	</mappers>

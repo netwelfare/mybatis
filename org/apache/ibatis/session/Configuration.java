@@ -295,11 +295,12 @@ public class Configuration
 		return parameterHandler;
 	}
 
-	public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement,
-			RowBounds rowBounds, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql)
+	public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds,
+			ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql)
 	{
-		ResultSetHandler resultSetHandler = mappedStatement.hasNestedResultMaps() ? new NestedResultSetHandler(
-				executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds)
+		ResultSetHandler resultSetHandler = mappedStatement.hasNestedResultMaps()
+				? new NestedResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql,
+						rowBounds)
 				: new FastResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql,
 						rowBounds);
 		resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);
@@ -341,7 +342,7 @@ public class Configuration
 		{
 			executor = new CachingExecutor(executor);
 		}
-		executor = (Executor) interceptorChain.pluginAll(executor);
+		executor = (Executor) interceptorChain.pluginAll(executor);//所有的拦截器都加入executor里面
 		return executor;
 	}
 
@@ -502,7 +503,8 @@ public class Configuration
 	{
 		return sqlFragments;
 	}
-    //加入拦截器链
+
+	//加入拦截器链
 	public void addInterceptor(Interceptor interceptor)
 	{
 		interceptorChain.addInterceptor(interceptor);

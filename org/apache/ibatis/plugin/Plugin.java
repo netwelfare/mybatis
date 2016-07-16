@@ -44,6 +44,7 @@ public class Plugin implements InvocationHandler
 		return target;
 	}
 
+	//这个是代理类，调用类的方法都将调用这个方法
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
 	{
 		try
