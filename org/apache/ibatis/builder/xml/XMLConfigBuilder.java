@@ -128,12 +128,13 @@ public class XMLConfigBuilder extends BaseBuilder
 			}
 		}
 	}
+
 	/**
 	 *插件文件的解析：
-       <plugins>
-       <plugin interceptor="org.format.mybatis.cache.interceptor.ExamplePlugin"></plugin>
-       </plugins>
-	 */      
+	   <plugins>
+	   <plugin interceptor="org.format.mybatis.cache.interceptor.ExamplePlugin"></plugin>
+	   </plugins>
+	 */
 	private void pluginElement(XNode parent) throws Exception
 	{
 		if (parent != null)
@@ -216,17 +217,17 @@ public class XMLConfigBuilder extends BaseBuilder
 							+ " is not known.  Make sure you spelled it correctly (case sensitive).");
 				}
 			}
-			configuration.setAutoMappingBehavior(AutoMappingBehavior.valueOf(stringValueOf(props
-					.getProperty("autoMappingBehavior"), "PARTIAL")));
+			configuration.setAutoMappingBehavior(
+					AutoMappingBehavior.valueOf(stringValueOf(props.getProperty("autoMappingBehavior"), "PARTIAL")));
 			configuration.setCacheEnabled(booleanValueOf(props.getProperty("cacheEnabled"), true));
 			configuration.setLazyLoadingEnabled(booleanValueOf(props.getProperty("lazyLoadingEnabled"), false));
 			configuration.setAggressiveLazyLoading(booleanValueOf(props.getProperty("aggressiveLazyLoading"), true));
-			configuration.setMultipleResultSetsEnabled(booleanValueOf(props.getProperty("multipleResultSetsEnabled"),
-					true));
+			configuration
+					.setMultipleResultSetsEnabled(booleanValueOf(props.getProperty("multipleResultSetsEnabled"), true));
 			configuration.setUseColumnLabel(booleanValueOf(props.getProperty("useColumnLabel"), true));
 			configuration.setUseGeneratedKeys(booleanValueOf(props.getProperty("useGeneratedKeys"), false));
-			configuration.setDefaultExecutorType(ExecutorType.valueOf(stringValueOf(props
-					.getProperty("defaultExecutorType"), "SIMPLE")));
+			configuration.setDefaultExecutorType(
+					ExecutorType.valueOf(stringValueOf(props.getProperty("defaultExecutorType"), "SIMPLE")));
 			configuration
 					.setDefaultStatementTimeout(integerValueOf(props.getProperty("defaultStatementTimeout"), null));
 		}
@@ -327,8 +328,8 @@ public class XMLConfigBuilder extends BaseBuilder
 				{
 					ErrorContext.instance().resource(url);
 					inputStream = Resources.getUrlAsStream(url);
-					XMLMapperBuilder mapperParser = new XMLMapperBuilder(inputStream, configuration, url, configuration
-							.getSqlFragments());
+					XMLMapperBuilder mapperParser = new XMLMapperBuilder(inputStream, configuration, url,
+							configuration.getSqlFragments());
 					mapperParser.parse();
 				}
 				else
