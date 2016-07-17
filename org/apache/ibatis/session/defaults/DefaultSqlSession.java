@@ -17,7 +17,8 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
-public class DefaultSqlSession implements SqlSession {
+public class DefaultSqlSession implements SqlSession
+{
 
 	private Configuration configuration;
 	private Executor executor;
@@ -25,187 +26,254 @@ public class DefaultSqlSession implements SqlSession {
 	private boolean autoCommit;
 	private boolean dirty;
 
-	public DefaultSqlSession(Configuration configuration, Executor executor, boolean autoCommit) {
+	public DefaultSqlSession(Configuration configuration, Executor executor, boolean autoCommit)
+	{
 		this.configuration = configuration;
 		this.executor = executor;
 		this.autoCommit = autoCommit;
 		this.dirty = false;
 	}
 
-	public Object selectOne(String statement) {
+	public Object selectOne(String statement)
+	{
 		return selectOne(statement, null);
 	}
 
-	public Object selectOne(String statement, Object parameter) {// 在这里可以添加上代理，一旦查询结束则可以放回连接池
+	public Object selectOne(String statement, Object parameter)
+	{// 在这里可以添加上代理，一旦查询结束则可以放回连接池
 		// Popular vote was to return null on 0 results and throw exception on
 		// too many.
 		List list = selectList(statement, parameter);
-		if (list.size() == 1) {
+		if (list.size() == 1)
+		{
 			return list.get(0);
-		} else if (list.size() > 1) {
+		}
+		else if (list.size() > 1)
+		{
 			throw new TooManyResultsException(
 					"Expected one result (or null) to be returned by selectOne(), but found: " + list.size());
-		} else {
+		}
+		else
+		{
 			return null;
 		}
 	}
 
-	public Map selectMap(String statement, String mapKey) {
+	public Map selectMap(String statement, String mapKey)
+	{
 		return selectMap(statement, null, mapKey, RowBounds.DEFAULT);
 	}
 
-	public Map selectMap(String statement, Object parameter, String mapKey) {
+	public Map selectMap(String statement, Object parameter, String mapKey)
+	{
 		return selectMap(statement, parameter, mapKey, RowBounds.DEFAULT);
 	}
 
-	public Map selectMap(String statement, Object parameter, String mapKey, RowBounds rowBounds) {
+	public Map selectMap(String statement, Object parameter, String mapKey, RowBounds rowBounds)
+	{
 		final List list = selectList(statement, parameter, rowBounds);
 		final DefaultMapResultHandler mapResultHandler = new DefaultMapResultHandler(mapKey);
 		final DefaultResultContext context = new DefaultResultContext();
-		for (Object o : list) {
+		for (Object o : list)
+		{
 			context.nextResultObject(o);
 			mapResultHandler.handleResult(context);
 		}
 		return mapResultHandler.getMappedResults();
 	}
 
-	public List selectList(String statement) {
+	public List selectList(String statement)
+	{
 		return selectList(statement, null);
 	}
 
-	public List selectList(String statement, Object parameter) {
+	public List selectList(String statement, Object parameter)
+	{
 		return selectList(statement, parameter, RowBounds.DEFAULT);
 	}
 
-	public List selectList(String statement, Object parameter, RowBounds rowBounds) {
-		try {
+	//查询sql的过程
+	public List selectList(String statement, Object parameter, RowBounds rowBounds)
+	{
+		try
+		{
 			MappedStatement ms = configuration.getMappedStatement(statement);
 			return executor.query(ms, wrapCollection(parameter), rowBounds, Executor.NO_RESULT_HANDLER);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
-		} finally {
+		}
+		finally
+		{
 			ErrorContext.instance().reset();
 		}
 	}
 
-	public void select(String statement, Object parameter, ResultHandler handler) {
+	public void select(String statement, Object parameter, ResultHandler handler)
+	{
 		select(statement, parameter, RowBounds.DEFAULT, handler);
 	}
 
-	public void select(String statement, ResultHandler handler) {
+	public void select(String statement, ResultHandler handler)
+	{
 		select(statement, null, RowBounds.DEFAULT, handler);
 	}
 
-	public void select(String statement, Object parameter, RowBounds rowBounds, ResultHandler handler) {
-		try {
+	public void select(String statement, Object parameter, RowBounds rowBounds, ResultHandler handler)
+	{
+		try
+		{
 			MappedStatement ms = configuration.getMappedStatement(statement);
 			executor.query(ms, wrapCollection(parameter), rowBounds, handler);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
-		} finally {
+		}
+		finally
+		{
 			ErrorContext.instance().reset();
 		}
 	}
 
-	public int insert(String statement) {
+	public int insert(String statement)
+	{
 		return insert(statement, null);
 	}
 
-	public int insert(String statement, Object parameter) {
+	public int insert(String statement, Object parameter)
+	{
 		return update(statement, parameter);
 	}
 
-	public int update(String statement) {
+	public int update(String statement)
+	{
 		return update(statement, null);
 	}
 
-	public int update(String statement, Object parameter) {
-		try {
+	public int update(String statement, Object parameter)
+	{
+		try
+		{
 			dirty = true;
 			MappedStatement ms = configuration.getMappedStatement(statement);
 			return executor.update(ms, wrapCollection(parameter));
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw ExceptionFactory.wrapException("Error updating database.  Cause: " + e, e);
-		} finally {
+		}
+		finally
+		{
 			ErrorContext.instance().reset();
 		}
 	}
 
-	public int delete(String statement) {
+	public int delete(String statement)
+	{
 		return update(statement, null);
 	}
 
-	public int delete(String statement, Object parameter) {
+	public int delete(String statement, Object parameter)
+	{
 		return update(statement, wrapCollection(parameter));
 	}
 
-	public void commit() {
+	public void commit()
+	{
 		commit(false);
 	}
 
-	public void commit(boolean force) {
-		try {
+	public void commit(boolean force)
+	{
+		try
+		{
 			executor.commit(isCommitOrRollbackRequired(force));
 			dirty = false;
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw ExceptionFactory.wrapException("Error committing transaction.  Cause: " + e, e);
-		} finally {
+		}
+		finally
+		{
 			ErrorContext.instance().reset();
 		}
 	}
 
-	public void rollback() {
+	public void rollback()
+	{
 		rollback(false);
 	}
 
-	public void rollback(boolean force) {
-		try {
+	public void rollback(boolean force)
+	{
+		try
+		{
 			executor.rollback(isCommitOrRollbackRequired(force));
 			dirty = false;
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw ExceptionFactory.wrapException("Error rolling back transaction.  Cause: " + e, e);
-		} finally {
+		}
+		finally
+		{
 			ErrorContext.instance().reset();
 		}
 	}
 
-	public void close() {
-		try {
+	public void close()
+	{
+		try
+		{
 			executor.close(isCommitOrRollbackRequired(false));
 			dirty = false;
-		} finally {
+		}
+		finally
+		{
 			ErrorContext.instance().reset();
 		}
 	}
 
-	public Configuration getConfiguration() {
+	public Configuration getConfiguration()
+	{
 		return configuration;
 	}
 
-	public <T> T getMapper(Class<T> type) {
+	public <T> T getMapper(Class<T> type)
+	{
 		return configuration.getMapper(type, this);
 	}
 
-	public Connection getConnection() {
+	public Connection getConnection()
+	{
 		return executor.getTransaction().getConnection();
 	}
 
-	public void clearCache() {
+	public void clearCache()
+	{
 		executor.clearLocalCache();
 	}
 
-	private boolean isCommitOrRollbackRequired(boolean force) {
+	private boolean isCommitOrRollbackRequired(boolean force)
+	{
 		return (!autoCommit && dirty) || force;
 	}
 
-	private Object wrapCollection(final Object object) {
-		if (object instanceof List) {
+	private Object wrapCollection(final Object object)
+	{
+		if (object instanceof List)
+		{
 			return new HashMap() {
 				{
 					put("list", object);
 				}
 			};
-		} else if (object != null && object.getClass().isArray()) {
+		}
+		else if (object != null && object.getClass().isArray())
+		{
 			return new HashMap() {
 				{
 					put("array", object);
