@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+	 <resultMap id="UserResult" type="java.util.HashMap">
+		<result property="id" column="id" />
+	</resultMap>
+	 <resultMap id="UserResult2" type="entity.User">
+		<result property="id" column="id" />
+	</resultMap>
+	<select id="selectUserById" parameterType="int" resultType="entity.User">
+		select * from user where id=#{id}
+	</select>
+	<select id="selectUserByUser" parameterType="entity.User" resultType="entity.User">
+	select * from user where id=#{id} <if test="name!=null"> and name=#{name}</if>
+	<choose>  
+			<when test="name!=null">
+				and name like #{name}
+			</when>
+			<when test="id==0">
+				and id =#{id}
+			</when>
+			<otherwise>
+				and password is not null
+			</otherwise>
+		</choose>
+	</select>
+	<select id="selectAllUser" resultMap="UserResult">
+	select * from user
+	</select>
+	<select id="selectAllUser2" resultMap="UserResult2">
+	select * from user
+	</select>
+</mapper>
