@@ -13,6 +13,7 @@
 	</select>
 	<select id="selectUserByUser" parameterType="entity.User" resultType="entity.User">
 	select * from user where id=#{id} <if test="name!=null"> and name=#{name}</if>
+	<!--  
 	<choose>  
 			<when test="name!=null">
 				and name like #{name}
@@ -23,7 +24,7 @@
 			<otherwise>
 				and password is not null
 			</otherwise>
-		</choose>
+		</choose>-->
 	</select>
 	<select id="selectAllUser" resultMap="UserResult">
 	select * from user
