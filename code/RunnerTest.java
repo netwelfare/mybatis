@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.reflection.MetaObject;
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 
 import entity.QueryStatisUserGroup;
@@ -28,15 +29,15 @@ public class RunnerTest {
 		User user = new User();
 		user.setName("wxf");
 		user.setId(1111);
-		SqlRunner  runner =new SqlRunner(file,conn);
-		ResultSet resultSet=	runner.query("selectUserByUser", user);
-		while (resultSet.next()) {
-		System.out.println("id: " + resultSet.getInt(1));
-		System.out.println("name: " + resultSet.getString(2));
-	}
+//		SqlRunner  runner =new SqlRunner(file,conn);
+//		ResultSet resultSet=	runner.query("selectUserByUser", user);
+//		while (resultSet.next()) {
+//		System.out.println("id: " + resultSet.getInt(1));
+//		System.out.println("name: " + resultSet.getString(2));
+//	}
 		
 		file = "conf/DataStatisUserGroup.xml";
-		runner =new SqlRunner(file,conn);
+		SqlRunner runner =new SqlRunner(file,conn);
 		
 		QueryStatisUserGroup group = new QueryStatisUserGroup();
 		group.setStatFrequency("HOUR");
@@ -46,7 +47,10 @@ public class RunnerTest {
 		pageNames.add("gold");
 		pageNames.add("yyg");
 		group.setPageNames(pageNames);
-		resultSet=	runner.query("getStatisUserGroups", group);
+		ResultSet resultSet=	runner.query("getStatisUserGroups", group);
+		
+		
+		 
 		
 		
 

@@ -13,7 +13,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
-
+import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.session.Configuration;
 
 public class SqlRunner {
@@ -32,6 +32,8 @@ public class SqlRunner {
 		try {
 			inputStream = Resources.getResourceAsStream(file);
 			Configuration configuration = new Configuration();
+			// MetaObject metaObject = configuration.newMetaObject(parameter);
+			// Object value = metaObject.getValue("startDate");
 			XMLMapperBuilder mapperParser = new XMLMapperBuilder(inputStream, configuration, file,
 					configuration.getSqlFragments());
 			mapperParser.parse();
@@ -50,7 +52,7 @@ public class SqlRunner {
 				if (inputStream != null) {
 					inputStream.close();
 				}
-			} catch (IOException  e) {
+			} catch (IOException e) {
 
 				e.printStackTrace();
 			}

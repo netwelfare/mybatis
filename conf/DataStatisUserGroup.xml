@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="StatisUserGroup">
+<sql id="userColumns"> user_group_id userGroupId</sql>
 
    <select id="getStatisUserGroups" parameterType="entity.QueryStatisUserGroup" resultType="entity.StatisUserGroup">
 		SELECT 
-		user_group_id userGroupId,
+		<include refid="userColumns"></include>
 		<choose>
 			<when test="statFrequency=='HOUR'">hour,</when>
 			<when test="statFrequency=='DAY'">date,</when>
@@ -29,7 +30,9 @@
 		GROUP BY <if test="statFrequency=='DAY'">report_date</if> <if test="statFrequency=='HOUR'">hour</if>
 		ORDER BY <if test="statFrequency=='DAY'">report_date ASC</if> <if test="statFrequency=='HOUR'">hour ASC</if>
    </select>
+   <select id="getStatisUserGroups2" parameterType="entity.QueryStatisUserGroup" resultType="entity.StatisUserGroup">
    
+   </select>
    
    <delete id="deleteUserGroupIndicatorDayStatisData" parameterType="long">
    	   delete from tb_data_statis_usergroup_indicator_day
